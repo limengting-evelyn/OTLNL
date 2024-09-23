@@ -12,7 +12,7 @@ import numpy as np
 from InceptionResNetV2 import *
 from KNNClassifier import KNNClassifier
 from sklearn.mixture import GaussianMixture
-import dataloader_webvision_0 as dataloader
+import dataloader_webvision as dataloader
 import torchnet
 import torch.multiprocessing as mp
 
@@ -310,8 +310,8 @@ def create_model(device):
     return model
 
 def create_model_selfsup(num_classes=50, device='cuda:0', drop=0):
-    #chekpoint = torch.load('/home/user/limengting/SupContrast-master/save/SupCon/cifar10_models/SimCLR_cifar10_resnet18_lr_0.5_decay_0.0001_bsz_1024_temp_0.5_trial_0_cosine_warm/ckpt_epoch_1000.pth')
-    chekpoint = torch.load('/home/user/limengting/SupContrast-master/save1/SupCon/webvision_{}_models/SimCLR_webvision_InceptionResNetV2_lr_0.5_decay_0.0001_bsz_64_temp_0.1_trial_0_cosine/ckpt_epoch_300.pth'.format(args.imb_factor))
+    #chekpoint = torch.load('./save/SupCon/cifar10_models/SimCLR_cifar10_resnet18_lr_0.5_decay_0.0001_bsz_1024_temp_0.5_trial_0_cosine_warm/ckpt_epoch_1000.pth')
+    chekpoint = torch.load('./save1/SupCon/webvision_{}_models/SimCLR_webvision_InceptionResNetV2_lr_0.5_decay_0.0001_bsz_64_temp_0.1_trial_0_cosine/ckpt_epoch_300.pth'.format(args.imb_factor))
     sd = {}
     for ke in chekpoint['model']:
         nk = ke.replace('module.', '')
@@ -335,7 +335,7 @@ if __name__ == "__main__":
     log_name = store_name + f'_w{warm_up}'
 
 
-    loader = dataloader.webvision_dataloader(batch_size=args.batch_size,num_class = args.num_class,num_workers=8,root_dir='/home/user/limengting/SFA-main/data/',log=stats_log, imb_ratio=args.imb_factor)
+    loader = dataloader.webvision_dataloader(batch_size=args.batch_size,num_class = args.num_class,num_workers=8,root_dir='./data/',log=stats_log, imb_ratio=args.imb_factor)
     print('| Building net')
     """
     net1 = create_model(cuda1)
