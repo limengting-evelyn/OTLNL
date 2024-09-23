@@ -13,7 +13,7 @@ from PreResNet import *
 from KNNClassifier import KNNClassifier
 from sklearn.mixture import GaussianMixture
 from sklearn import preprocessing
-import dataloader_cifar2 as dataloader
+import dataloader_cifar as dataloader
 from Contrastive_loss import *
 from losses import Prototype_t, loss_unl
 
