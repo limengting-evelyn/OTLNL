@@ -31,7 +31,7 @@ parser.add_argument('--num_epochs', default=200, type=int)
 parser.add_argument('--seed', default=123)
 parser.add_argument('--gpuid', default=0, type=int)
 parser.add_argument('--num_class', default=10, type=int)
-parser.add_argument('--data_path', default='/home/user/limengting/SFA-main/data/cifar10/cifar-10-batches-py', type=str, help='path to dataset')
+parser.add_argument('--data_path', default='./data/cifar10/cifar-10-batches-py', type=str, help='path to dataset')
 parser.add_argument('--dataset', default='cifar10', type=str)
 parser.add_argument('--imb_type', default='exp', type=str)
 parser.add_argument('--imb_factor', default=0.01, type=float)
@@ -462,8 +462,8 @@ def create_model():
     return model
 
 def create_model_selfsup(num_classes=10, device='cuda:0', drop=0):
-    #chekpoint = torch.load('/home/user/limengting/SupContrast-master/save/SupCon/cifar10_models/SimCLR_cifar10_resnet18_lr_0.5_decay_0.0001_bsz_1024_temp_0.5_trial_0_cosine_warm/ckpt_epoch_1000.pth')
-    chekpoint = torch.load('/home/user/limengting/SupContrast-master/save/SupCon/{}_{}_{}_models/SimCLR_{}_resnet18_lr_0.5_decay_0.0001_bsz_1024_temp_0.1_trial_0_cosine_warm/ckpt_epoch_1000.pth'.format(args.dataset, args.noise_ratio, args.imb_factor, args.dataset))
+    #chekpoint = torch.load('./save/SupCon/cifar10_models/SimCLR_cifar10_resnet18_lr_0.5_decay_0.0001_bsz_1024_temp_0.5_trial_0_cosine_warm/ckpt_epoch_1000.pth')
+    chekpoint = torch.load('./save/SupCon/{}_{}_{}_models/SimCLR_{}_resnet18_lr_0.5_decay_0.0001_bsz_1024_temp_0.1_trial_0_cosine_warm/ckpt_epoch_1000.pth'.format(args.dataset, args.noise_ratio, args.imb_factor, args.dataset))
     sd = {}
     for ke in chekpoint['model']:
         nk = ke.replace('module.', '')
